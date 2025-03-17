@@ -32,3 +32,4 @@ const Cards: React.FC<CardsProps> = ({ cards, className }) => {
 };
 
 export default Cards;
+

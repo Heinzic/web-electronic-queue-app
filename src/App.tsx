@@ -4,9 +4,9 @@ import './App.css';
 import Layout from './components/shared/Layout';
 
 const cardData = [
-  { title: "Card 1", content: "This is the content for card 1." },
-  { title: "Card 2", content: "This is the content for card 2." },
-  { title: "Card 3", content: "This is the content for card 3." },
+  { title: "Дата и время"},
+  { title: "Место"},
+  { title: "Услуга"},
 ];
 function App() {
   return (
@@ -16,7 +16,6 @@ function App() {
           <Route path="/" element={<Cards cards={cardData} />} />
         </Routes>
       </Layout>
-      
     </div>
   );
 }

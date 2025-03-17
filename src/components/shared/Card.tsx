@@ -1,12 +1,16 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
-import { CardProps } from './Cards';
 
+interface CardProps {
+  title: string;
+  className?: string;
+}
 export const Card: React.FC<CardProps> = ({ title, className }) => (
   <div className={cn(
-    "card bg-gray-500 rounded-lg shadow-md p-4 h-[300px] text-center",
+    "bg-white rounded-[76px] shadow-md p-4 flex flex-col justify-between w-[457px] h-[700px] my-auto",
     className
   )}>
-    <h2 className="text-xl font-bold mb-2">{title}</h2>
+    <h2 className="text-[40px] m-auto">{title}</h2>
   </div>
 );
+
