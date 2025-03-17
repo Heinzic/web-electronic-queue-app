@@ -1,9 +1,9 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
+import { Card } from './Card';
 
-interface CardProps {
+export interface CardProps {
   title: string;
-  content: string;
   className?: string;
 }
 
@@ -12,28 +12,17 @@ interface CardsProps {
   className?: string;
 }
 
-const Card: React.FC<CardProps> = ({ title, content, className }) => (
-  <div className={cn(
-    "card bg-white rounded-lg shadow-md p-4",
-    className
-  )}>
-    <h2 className="text-xl font-bold mb-2">{title}</h2>
-    <p>{content}</p>
-  </div>
-);
-
 const Cards: React.FC<CardsProps> = ({ cards, className }) => {
   return (
     <div className={cn(
-      "flex justify-center items-center min-h-screen bg-gray-100",
+      "flex justify-center items-center",
       className
     )}>
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex flex-wrap justify-center gap-[30px]">
         {cards.map((card, index) => (
           <Card 
             key={index} 
             title={card.title} 
-            content={card.content} 
             className={card.className}
           />
         ))}
