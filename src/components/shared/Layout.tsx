@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children, className }) => {
   return (
     <div className="flex flex-col min-h-screen h-screen bg-[#D9D9D9]">
       <Header />
-      <main className={cn("flex-grow w-full flex items-center bg-[#D9D9D9]", className)}>
+      <main className={cn("flex-grow w-full flex bg-[#D9D9D9]", className)}>
         <div className="w-full p-4">
           {children}
         </div>

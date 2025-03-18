@@ -10,11 +10,12 @@ interface CardsProps {
 
 const Cards: React.FC<CardsProps> = ({ cards, className }) => {
   return (
-    <div className={cn(
+    <div className="flex-grow h-full flex bg-[#D9D9D9] justify-center">
+      <div className={cn(
       "flex justify-center items-center",
       className
     )}>
-      <div className="flex flex-wrap justify-center gap-[30px]">
+      <div className="flex flex-wrap justify-center gap-[30px] items-center">
         {cards.map((card, index) => (
           <Card 
             key={index} 
@@ -25,6 +26,8 @@ const Cards: React.FC<CardsProps> = ({ cards, className }) => {
         ))}
       </div>
     </div>
+    </div>
+    
   );
 };
 

@@ -87,17 +87,17 @@ function Calendar({
 
   const _monthsClassName = cn("relative flex", props.monthsClassName)
   const _monthCaptionClassName = cn(
-    "relative mx-10 flex h-7 items-center justify-center",
+    "relative mx-10 flex h-7 items-center justify-center ",
     props.monthCaptionClassName
   )
-  const _weekdaysClassName = cn("flex flex-row", props.weekdaysClassName)
+  const _weekdaysClassName = cn("flex flex-row ", props.weekdaysClassName)
   const _weekdayClassName = cn(
-    "w-8 text-sm font-normal text-muted-foreground",
+    "w-8 text-sm font-normal text-muted-foreground ",
     props.weekdayClassName
   )
   const _monthClassName = cn("w-full", props.monthClassName)
   const _captionClassName = cn(
-    "relative flex items-center justify-center pt-1",
+    "relative flex items-center justify-center pt-1 ",
     props.captionClassName
   )
   const _captionLabelClassName = cn(
@@ -123,12 +123,12 @@ function Calendar({
   const _monthGridClassName = cn("mx-auto mt-4", props.monthGridClassName)
   const _weekClassName = cn("mt-2 flex w-max items-start", props.weekClassName)
   const _dayClassName = cn(
-    "flex size-8 flex-1 items-center justify-center p-0 text-sm",
+    "flex size-8 flex-1 items-center justify-center p-0 text-sm ",
     props.dayClassName
   )
   const _dayButtonClassName = cn(
     buttonVariants({ variant: "ghost" }),
-    "size-8 rounded-md p-0 font-normal transition-none aria-selected:opacity-100",
+    "size-8 rounded-md p-0 font-normal transition-none aria-selected:opacity-100 cursor-pointer",
     props.dayButtonClassName
   )
   const buttonRangeClassName =
@@ -168,7 +168,7 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn("p-3 pointer-events-auto", className)}
+      className={cn("p-3 pointer-events-auto ", className)}
       style={{
         width: 248.8 * (columnsDisplayed ?? 1) + "px",
       }}
@@ -345,7 +345,7 @@ function Nav({
     <nav className={cn("flex items-center", className)}>
       <Button
         variant="outline"
-        className="absolute left-0 h-7 w-7 bg-transparent p-0 opacity-80 hover:opacity-100"
+        className="absolute left-0 h-7 w-7 bg-transparent p-0 opacity-80 hover:opacity-100 cursor-pointer"
         type="button"
         tabIndex={isPreviousDisabled ? undefined : -1}
         disabled={isPreviousDisabled}
@@ -363,7 +363,7 @@ function Nav({
 
       <Button
         variant="outline"
-        className="absolute right-0 h-7 w-7 bg-transparent p-0 opacity-80 hover:opacity-100"
+        className="absolute right-0 h-7 w-7 bg-transparent p-0 opacity-80 hover:opacity-100 cursor-pointer"
         type="button"
         tabIndex={isNextDisabled ? undefined : -1}
         disabled={isNextDisabled}
@@ -396,7 +396,7 @@ function CaptionLabel({
   if (!showYearSwitcher) return <span {...props}>{children}</span>
   return (
     <Button
-      className="h-7 w-full truncate text-sm font-medium"
+      className="h-7 w-full truncate text-sm font-medium cursor-pointer"
       variant="ghost"
       size="sm"
       onClick={() => setNavView((prev) => (prev === "days" ? "years" : "days"))}
@@ -465,7 +465,7 @@ function YearGrid({
   const { goToMonth, selected } = useDayPicker()
 
   return (
-    <div className={cn("grid grid-cols-4 gap-y-2", className)} {...props}>
+    <div className={cn("grid grid-cols-4 gap-y-2 cursor-pointer", className)} {...props}>
       {Array.from(
         { length: displayYears.to - displayYears.from + 1 },
         (_, i) => {
@@ -486,7 +486,7 @@ function YearGrid({
             <Button
               key={i}
               className={cn(
-                "h-7 w-full text-sm font-normal text-foreground",
+                "h-7 w-full text-sm font-normal text-foreground cursor-pointer",
                 displayYears.from + i === new Date().getFullYear() &&
                   "bg-accent font-medium text-accent-foreground"
               )}
