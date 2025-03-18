@@ -3,6 +3,7 @@
 import { Button, buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { differenceInCalendarDays } from "date-fns"
+import { ru } from "react-day-picker/locale";
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import * as React from "react"
 import {
@@ -171,6 +172,8 @@ function Calendar({
       style={{
         width: 248.8 * (columnsDisplayed ?? 1) + "px",
       }}
+      locale={ru}
+      lang="ru"
       classNames={{
         months: _monthsClassName,
         month_caption: _monthCaptionClassName,

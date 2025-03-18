@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
 import { CalendarIcon } from "lucide-react"
+import { ru } from "react-day-picker/locale"
 
 interface DatePickerProps {
   date: Date | undefined;  // undefined if no date selected yet
@@ -28,7 +29,7 @@ export default function DatePicker({date, setDateFunc}: DatePickerProps) {
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? format(date, "PPP") : <span>Выберите дату</span>}
+          {date ? format(date, "PPP", {locale:ru}) : <span>Выберите дату</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
