@@ -1,19 +1,16 @@
-import { Routes, Route, Link } from 'react-router-dom';
-import Cards from './components/shared/Cards';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Layout from './components/shared/Layout';
+import Main from './components/pages/Main';
+import DateAndTime from './components/pages/DateAndTime';
 
-const cardData = [
-  { title: "Дата и время"},
-  { title: "Место"},
-  { title: "Услуга"},
-];
 function App() {
   return (
     <div className="App">
       <Layout>
         <Routes>
-          <Route path="/" element={<Cards cards={cardData} />} />
+          <Route path="/" element={<Main />} />
+          <Route path="/date" element={<DateAndTime />} />
         </Routes>
       </Layout>
     </div>

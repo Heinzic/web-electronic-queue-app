@@ -1,11 +1,7 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
 import { Card } from './Card';
-
-export interface CardProps {
-  title: string;
-  className?: string;
-}
+import { CardProps } from '../../types/CardProps';
 
 interface CardsProps {
   cards: CardProps[];
@@ -23,6 +19,7 @@ const Cards: React.FC<CardsProps> = ({ cards, className }) => {
           <Card 
             key={index} 
             title={card.title} 
+            link={card.link}
             className={card.className}
           />
         ))}
