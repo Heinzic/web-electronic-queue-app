@@ -4,14 +4,9 @@ import DatePicker from "../ui/datepicker"
 import { RadioCards, Text } from "@radix-ui/themes"
 import { Button } from "../ui/button";
 import { setSelectedDate, setSelectedTimeSlot } from '../../store/dateTimeSlice';
-
-interface TimeSlot {
-  id: string;
-  time: string;
-}
+import { TimeSlot } from '../../types/TimeSlot';
 
 export default function DateAndTime() {
-
   const [date, setDate] = useState<Date | undefined>()
   const [time, setTime] = useState<string | undefined>();
 
