@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { setSelectedOffice } from '../../store/officeSlice';
-import { useAppDispatch } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Button } from '../ui/button';
 import { Office } from '../../types/Office';
 
@@ -12,7 +12,9 @@ const offices: Office[] = [
 
 export default function OfficeSelector() {
   const dispatch = useAppDispatch();
-  const [selectedOfficeId, setSelectedOfficeId] = useState<string | null>(null);
+  const storedOfficeId = useAppSelector((state) => state.officeSlice.selectedOfficeId);
+  
+  const [selectedOfficeId, setSelectedOfficeId] = useState<string | null>(storedOfficeId);
 
   const handleOfficeSelect = (officeId: string) => {
     setSelectedOfficeId(officeId);

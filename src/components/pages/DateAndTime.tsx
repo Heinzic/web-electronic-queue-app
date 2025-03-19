@@ -1,16 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import DatePicker from "../ui/datepicker"
 import { RadioCards, Text } from "@radix-ui/themes"
 import { Button } from "../ui/button";
 import { setSelectedDate, setSelectedTimeSlot } from '../../store/dateTimeSlice';
 import { TimeSlot } from '../../types/TimeSlot';
+import { useAppSelector } from '@/store/hooks';
 
 export default function DateAndTime() {
-  const [date, setDate] = useState<Date | undefined>()
-  const [time, setTime] = useState<string | undefined>();
-
   const dispatch = useDispatch();
+  const storedDate = useAppSelector((state) => state.dateTimeSlice.selectedDate);
+  const storedTimeSlot = useAppSelector((state) => state.dateTimeSlice.selectedTimeSlot);
+
+  const [date, setDate] = useState<Date | undefined>(storedDate ? new Date(storedDate) : undefined);
+  const [time, setTime] = useState<string | undefined>(storedTimeSlot || undefined);
+
+  useEffect(() => {
+    if (storedDate) {
+      setDate(new Date(storedDate));
+    }
+    if (storedTimeSlot) {
+      setTime(storedTimeSlot);
+    }
+  }, [storedDate, storedTimeSlot]);
 
   const timeSlots: TimeSlot[] = [
     { id: "1", time: "09:00 - 10:00" },
@@ -26,6 +38,13 @@ export default function DateAndTime() {
     dispatch(setSelectedTimeSlot(time ? time : null));
   };
 
+  const handleDismiss = () => {
+    setDate(undefined);
+    setTime(undefined);
+    dispatch(setSelectedDate(null));
+    dispatch(setSelectedTimeSlot(null));
+  };
+  
   const isFormComplete = date && time;
 
   return (
@@ -33,7 +52,7 @@ export default function DateAndTime() {
       <div className="flex justify-center gap-[30px] flex-wrap">
           <div className="flex flex-col items-center">
             <DatePicker 
-              date={date ? new Date(date) : undefined} 
+              date={date}
               setDateFunc={setDate} 
               width={400} 
               height={150} 
@@ -41,10 +60,23 @@ export default function DateAndTime() {
               textSize={32}
             />
             <div className="mx-auto mt-[40px] flex gap-[15px]">
-              <Button variant="destructive" size={'lg'} className='cursor-pointer'>Отмена</Button>
-              <Button variant="default" size={'lg'} disabled={!isFormComplete} 
-              onClick={handleSubmit}
-              className='cursor-pointer'>Записаться</Button>
+              <Button 
+                variant="destructive" 
+                size={'lg'} 
+                className='cursor-pointer'
+                onClick={handleDismiss}
+              >
+                Отмена
+              </Button>
+              <Button 
+                variant="default" 
+                size={'lg'} 
+                disabled={!isFormComplete} 
+                onClick={handleSubmit}
+                className='cursor-pointer'
+              >
+                Записаться
+              </Button>
             </div>
         </div>
         {date && (
