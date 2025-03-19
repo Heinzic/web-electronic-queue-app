@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux'
 import DatePicker from "../ui/datepicker"
 import { RadioCards, Text } from "@radix-ui/themes"
 import { Button } from "../ui/button";
-import { setSelectedDate, setSelectedTimeSlot } from '../../store/dateTimeSlice';
+import { setSelectedDate, setSelectedTimeSlot } from '../../store/slices/dateTimeSlice';
 import { TimeSlot } from '../../types/TimeSlot';
 import { useAppSelector } from '@/store/hooks';
 
-export default function DateAndTime() {
+export default function DateAndTimeSelector() {
   const dispatch = useDispatch();
   const storedDate = useAppSelector((state) => state.dateTimeSlice.selectedDate);
   const storedTimeSlot = useAppSelector((state) => state.dateTimeSlice.selectedTimeSlot);
@@ -44,11 +44,12 @@ export default function DateAndTime() {
     dispatch(setSelectedDate(null));
     dispatch(setSelectedTimeSlot(null));
   };
-  
+
   const isFormComplete = date && time;
 
   return (
     <div className="flex flex-col justify-center">
+      <h2>Доступные временные слоты</h2>
       <div className="flex justify-center gap-[30px] flex-wrap">
           <div className="flex flex-col items-center">
             <DatePicker 
