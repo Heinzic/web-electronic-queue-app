@@ -41,9 +41,9 @@ export default function DateAndTime() {
               date={date ? new Date(date) : undefined} 
               setDateFunc={setDate} 
               width={400} 
-              height={200} 
+              height={150} 
               iconSize={80} 
-              textSize={30}
+              textSize={32}
             />
             <div className="mx-auto mt-[40px] flex gap-[15px]">
               <Button variant="destructive" size={'lg'} className='cursor-pointer'>Отмена</Button>

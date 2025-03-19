@@ -22,22 +22,28 @@ interface DatePickerProps {
 }
 
 export default function DatePicker({date, setDateFunc, width = 200, height = 50, iconSize = 40, textSize = 12}: DatePickerProps) {
+  const buttonStyle = {
+    width: `${width}px`,
+    height: `${height}px`,
+    fontSize: `${textSize}px`,
+  };
   return (
     <Popover>
-      <PopoverTrigger >
+      <PopoverTrigger>
         <Button
           variant={"outline"}
           className={cn(
-            `w-[${width}px] h-[${height}px] justify-around text-left text-[${textSize}px] font-normal cursor-pointer`,
+            "justify-around text-left font-normal cursor-pointer",
             !date && "text-muted-foreground"
           )}
+          style={buttonStyle}
         >
           <CalendarIcon size={iconSize} />
           {date ? format(date, "PPP", {locale:ru}) : <span>Выберите дату</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="center">
-        <Calendar mode="single" selected={date} onSelect={setDateFunc} />
+        <Calendar mode="single" selected={date} onSelect={setDateFunc} locale={ru} />
       </PopoverContent>
     </Popover>
   )
