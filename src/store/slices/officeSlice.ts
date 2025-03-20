@@ -64,17 +64,14 @@ export const selectAvailableServices = createSelector(
   (office) => {
     const { offices, selectedOfficeId } = office;
 
-    // Get services based on the selected office
     let services: Service[];
     if (selectedOfficeId) {
       const selectedOffice = offices.find((office) => office.id === selectedOfficeId);
       services = selectedOffice ? selectedOffice.services : [];
     } else {
-      // If no office is selected, get all services from all offices
       services = offices.flatMap((office) => office.services);
     }
 
-    // Remove duplicates based on service id
     const uniqueServices = services.filter(
       (service, index, self) =>
         index === self.findIndex((foundService) => foundService.id === service.id)

@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSelector } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 interface ServiceState {
   selectedServiceId: string | null;
@@ -19,4 +21,16 @@ const serviceSlice = createSlice({
 });
 
 export const { setSelectedServiceId } = serviceSlice.actions;
+
+export const selectAvailableOffices = createSelector(
+  [(state: RootState) => state.serviceSlice.selectedServiceId, 
+   (state: RootState) => state.officeSlice.offices],
+  (selectedServiceId, offices) => {
+    if (!selectedServiceId) return offices;
+    return offices.filter(office => 
+      office.services.some(service => service.id === selectedServiceId)
+    );
+  }
+);
+
 export default serviceSlice.reducer;

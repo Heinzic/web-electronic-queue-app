@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { setSelectedOffice } from '../../store/slices/officeSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Button } from '../ui/button';
+import { selectAvailableOffices } from '@/store/slices/serviceSlice';
 
 export default function OfficeSelector() {
   const dispatch = useAppDispatch();
-  const offices = useAppSelector((state) => state.officeSlice.offices);
+  const selectedServiceId = useAppSelector((state) => state.serviceSlice.selectedServiceId);
+  const offices = selectedServiceId? useAppSelector(selectAvailableOffices): useAppSelector((state) => state.officeSlice.offices);
   const storedOfficeId = useAppSelector((state) => state.officeSlice.selectedOfficeId);
 
   const [selectedOfficeId, setSelectedOfficeId] = useState<string | null>(storedOfficeId);
