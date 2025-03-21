@@ -1,12 +1,9 @@
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { useAppSelector } from '@/store/hooks';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import { setSelectedOffice } from '@/store/slices/officeSlice';
-import { setSelectedServiceId } from '@/store/slices/serviceSlice';
-import { setSelectedDate, setSelectedTimeSlot } from '@/store/slices/dateTimeSlice';
+import resetData from '@/helpers/resetData';
 
 export default function AppointmentSuccess() {
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const selectedOffice = useAppSelector((state) => 
         state.officeSlice.offices.find(office => office.id === state.officeSlice.selectedOfficeId)
@@ -25,10 +22,7 @@ export default function AppointmentSuccess() {
     }
 
     const handleBackToHome = () => {
-        dispatch(setSelectedOffice(null));
-        dispatch(setSelectedServiceId(null));
-        dispatch(setSelectedDate(null));
-        dispatch(setSelectedTimeSlot(null));
+        resetData();
         navigate('/');
     };
 
