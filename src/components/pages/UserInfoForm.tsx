@@ -21,7 +21,10 @@ const formSchema = z.object({
   firstName: z.string().min(1, 'Имя обязательно'),
   middleName: z.string().optional(),
   email: z.string().email('Неверный формат email'),
-  phone: z.string().min(10, 'Телефон должен содержать не менее 10 цифр'),
+  phone: z.string()
+    .regex(/^[0-9]+$/, 'Телефон должен содержать только цифры')
+    .min(10, 'Телефон должен содержать не менее 10 цифр')
+    .max(15, 'Телефон должен содержать не более 15 цифр'),
   comment: z.string().optional(),
 });
 
