@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '@/store/hooks';
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { setUserInfo } from '@/store/slices/userSlice';
 
 const formSchema = z.object({
@@ -33,9 +33,10 @@ type FormValues = z.infer<typeof formSchema>;
 export default function UserInfoForm() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const storedUserInfo = useAppSelector((state) => state.userSlice.userInfo);
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: storedUserInfo || {
       lastName: '',
       firstName: '',
       middleName: '',
@@ -44,6 +45,7 @@ export default function UserInfoForm() {
       comment: '',
     },
   });
+
 
   function onSubmit(values: FormValues) {
     dispatch(setUserInfo(values));

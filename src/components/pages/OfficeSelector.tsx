@@ -3,9 +3,11 @@ import { setSelectedOffice } from '../../store/slices/officeSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Button } from '../ui/button';
 import { selectAvailableOffices } from '@/store/slices/serviceSlice';
+import { useNavigate } from 'react-router-dom';
 
 export default function OfficeSelector() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const selectedServiceId = useAppSelector((state) => state.serviceSlice.selectedServiceId);
   const offices = selectedServiceId? useAppSelector(selectAvailableOffices): useAppSelector((state) => state.officeSlice.offices);
   const storedOfficeId = useAppSelector((state) => state.officeSlice.selectedOfficeId);
@@ -19,12 +21,12 @@ export default function OfficeSelector() {
   const handleSubmit = () => {
     if (selectedOfficeId) {
       dispatch(setSelectedOffice(selectedOfficeId));
+      navigate('/')
     }
   };
 
   const handleDismiss = () => {
-    setSelectedOfficeId(null);
-    dispatch(setSelectedOffice(null));
+    navigate('/')
   };
 
   return (

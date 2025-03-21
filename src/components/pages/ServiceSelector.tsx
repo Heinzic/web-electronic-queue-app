@@ -3,17 +3,17 @@ import { selectAvailableServices } from "@/store/slices/officeSlice";
 import { setSelectedServiceId } from "@/store/slices/serviceSlice";
 import { Button } from "../ui/button";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ServiceSelector() {
-    const availableServices = useAppSelector((state) => selectAvailableServices(state));
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const availableServices = useAppSelector((state) => selectAvailableServices(state));
     const selectedServiceId = useAppSelector((state) => state.serviceSlice.selectedServiceId);
-
     const [selectedService, setSelectedService] = useState<string | null>(selectedServiceId);
 
     const handleDismiss = () => {
-        setSelectedService(null);
-        dispatch(setSelectedServiceId(null));
+        navigate('/')
     };
     const handleServiceSelect = (serviceId: string) => {
         setSelectedService(serviceId);
@@ -22,6 +22,7 @@ function ServiceSelector() {
     const handleSubmit = () => {
         if (selectedService) {
             dispatch(setSelectedServiceId(selectedService));
+            navigate('/')
         }
     };
     return ( 

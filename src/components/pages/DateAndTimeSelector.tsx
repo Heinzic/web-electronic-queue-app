@@ -6,8 +6,10 @@ import { Button } from "../ui/button";
 import { setSelectedDate, setSelectedTimeSlot } from '../../store/slices/dateTimeSlice';
 import { TimeSlot } from '../../types/TimeSlot';
 import { useAppSelector } from '@/store/hooks';
+import { useNavigate } from 'react-router-dom';
 
 export default function DateAndTimeSelector() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const storedDate = useAppSelector((state) => state.dateTimeSlice.selectedDate);
   const storedTimeSlot = useAppSelector((state) => state.dateTimeSlice.selectedTimeSlot);
@@ -36,13 +38,11 @@ export default function DateAndTimeSelector() {
   const handleSubmit = () => {
     dispatch(setSelectedDate(date ? date.toISOString() : null));
     dispatch(setSelectedTimeSlot(time ? time : null));
+    navigate('/')
   };
 
   const handleDismiss = () => {
-    setDate(undefined);
-    setTime(undefined);
-    dispatch(setSelectedDate(null));
-    dispatch(setSelectedTimeSlot(null));
+    navigate('/')
   };
 
   const isFormComplete = date && time;
