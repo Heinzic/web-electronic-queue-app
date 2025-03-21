@@ -13,7 +13,7 @@ export default function AppointmentFlow({ children }: { children: React.ReactNod
     if (selectedOfficeId && selectedServiceId && selectedDate && selectedTimeSlot) {
       navigate('/userinfo');
     }
-  }, [selectedOfficeId, selectedServiceId, selectedDate, selectedTimeSlot, navigate]);
+  }, [selectedOfficeId, selectedServiceId, selectedDate, selectedTimeSlot]);
 
   return <>{children}</>;
 }

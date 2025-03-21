@@ -7,13 +7,14 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '@/store/hooks';
+import { setUserInfo } from '@/store/slices/userSlice';
 
 const formSchema = z.object({
   lastName: z.string().min(1, 'Фамилия обязательна'),
@@ -27,6 +28,8 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export default function UserInfoForm() {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,8 +43,10 @@ export default function UserInfoForm() {
   });
 
   function onSubmit(values: FormValues) {
-    console.log(values);
+    dispatch(setUserInfo(values));
+    navigate('/confirm');
   }
+
 
   return (
     <Form {...form}>

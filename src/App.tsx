@@ -7,6 +7,8 @@ import OfficeSelector from './components/pages/OfficeSelector';
 import ServiceSelector from './components/pages/ServiceSelector';
 import UserInfoForm from './components/pages/UserInfoForm';
 import AppointmentFlow from './components/HOC/AppointmentFlow';
+import AppointmentConfirmation from './components/pages/AppointmentConfirmation';
+import AppointmentSuccess from './components/pages/AppointmentSuccess';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             <Route path="/office" element={<OfficeSelector />} />
             <Route path="/service" element={<ServiceSelector />} />
             <Route path="/userinfo" element={<UserInfoForm />} />
+            <Route path="/confirm" element={<AppointmentConfirmation />} />
+            <Route path="/appointmentSuccess" element={<AppointmentSuccess />} />
           </Routes>
         </AppointmentFlow>
       </Layout>
