@@ -16,7 +16,7 @@ function App() {
       <Layout>
         <AppointmentFlow>
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path="/:scenario?" element={<Main />} />
             <Route path="/date" element={<DateAndTimeSelector />} />
             <Route path="/office" element={<OfficeSelector />} />
             <Route path="/service" element={<ServiceSelector />} />

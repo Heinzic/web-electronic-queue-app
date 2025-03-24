@@ -5,10 +5,11 @@ import dateTimeSlice from "./slices/dateTimeSlice"
 import officeSlice from "./slices/officeSlice"
 import serviceSlice from "./slices/serviceSlice"
 import userSlice from "./slices/userSlice"
+import scenarioSlice from "./slices/scenarioSlice"
 
 // `combineSlices` automatically combines the reducers using
 // their `reducerPath`s, therefore we no longer need to call `combineReducers`.
-const rootReducer = combineSlices({dateTimeSlice, officeSlice, serviceSlice, userSlice})
+const rootReducer = combineSlices({dateTimeSlice, officeSlice, serviceSlice, userSlice, scenarioSlice})
 // Infer the `RootState` type from the root reducer
 export type RootState = ReturnType<typeof rootReducer>
 
